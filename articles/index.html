@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章聚合中心 - 航线引航 (AirRoute)</title>
+    <meta name="description" content="航线引航文章聚合中心：汇聚最新2026全球IEPL专线机场实测报告、三大运营商晚高峰测速、防断流容灾配置指南与跨国科研出海网络技术长文。">
+    <meta name="keywords" content="航线引航文章中心,机场测速报告,IEPL专线评测,晚高峰测速,防断流配置,出海指南">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="index.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="文章聚合中心 - 航线引航 (AirRoute)">
+    <meta property="og:description" content="航线引航文章聚合中心：汇聚最新2026全球IEPL专线机场实测报告、三大运营商晚高峰测速、防断流容灾配置指南与跨国科研出海网络技术长文。">
+    <meta property="og:url" content="index.html">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                        },
+                        radar: {
+                            base: '#030712',
+                            card: '#0b1329',
+                            cardLight: '#111e3f',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .radar-grid-bg {
+            background-color: #030712;
+            background-image: 
+                radial-gradient(circle at 50% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 60%),
+                linear-gradient(rgba(14, 165, 233, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(14, 165, 233, 0.04) 1px, transparent 1px);
+            background-size: 100% 100%, 36px 36px, 36px 36px;
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #38bdf8 0%, #06b6d4 50%, #34d399 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-[#030712] text-slate-200 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 bg-[#030712]/90 backdrop-blur-md border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <!-- Logo -->
+                <a href="../index.html" class="flex items-center space-x-3 group">
+                    <div class="relative w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+                        <svg class="w-6 h-6 text-white transform -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                        </svg>
+                        <div class="absolute -top-1 -right-1 w-3 h-3 bg-emerald-400 rounded-full border-2 border-[#030712]"></div>
+                    </div>
+                    <div>
+                        <div class="flex items-center space-x-1.5">
+                            <span class="text-xl font-black tracking-wider text-white">航线引航</span>
+                            <span class="text-[10px] uppercase font-bold tracking-widest px-1.5 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800/50">AirRoute</span>
+                        </div>
+                        <p class="text-[10px] text-slate-400 tracking-tight">全球专线拓扑实测与避坑指南</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav Items -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                    <a href="../index.html" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-cyan-400 rounded-lg hover:bg-slate-800/50 transition">首页</a>
+                    <a href="../index.html#ranking" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-cyan-400 rounded-lg hover:bg-slate-800/50 transition">天梯总榜</a>
+                    <a href="../index.html#reviews" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-cyan-400 rounded-lg hover:bg-slate-800/50 transition">专线评测</a>
+                    <a href="../index.html#speedtest" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-cyan-400 rounded-lg hover:bg-slate-800/50 transition">晚高峰测速</a>
+                    <a href="../index.html#guide" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-cyan-400 rounded-lg hover:bg-slate-800/50 transition">出海避坑</a>
+                    <a href="index.html" class="px-3 py-2 text-sm font-medium text-cyan-400 rounded-lg bg-slate-800/50 transition flex items-center">
+                        <span>长文矩阵</span>
+                    </a>
+                </nav>
+
+                <!-- Actions CTA -->
+                <div class="hidden sm:flex items-center space-x-3">
+                    <a href="../index.html#ranking" class="inline-flex items-center px-4 py-2 text-xs font-semibold rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-lg shadow-cyan-500/20 transition">
+                        返回 2026 推荐榜
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800" aria-label="打开菜单">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#070e24] border-b border-slate-800 px-4 pt-2 pb-4 space-y-1">
+            <a href="../index.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800/50">首页</a>
+            <a href="../index.html#ranking" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800/50">天梯总榜</a>
+            <a href="../index.html#reviews" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800/50">专线评测</a>
+            <a href="../index.html#speedtest" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800/50">晚高峰测速</a>
+            <a href="../index.html#guide" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800/50">出海避坑</a>
+            <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-cyan-400 bg-slate-800/50">评测长文聚合中心</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow radar-grid-bg py-12 sm:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Breadcrumbs -->
+            <nav class="flex items-center space-x-2 text-xs text-slate-400 mb-8" aria-label="Breadcrumb">
+                <a href="../index.html" class="hover:text-cyan-400 transition">首页 (Home)</a>
+                <span>/</span>
+                <span class="text-cyan-400 font-medium">文章聚合中心 (Articles)</span>
+            </nav>
+
+            <!-- Page Header -->
+            <div class="max-w-3xl mb-12">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-800/40 text-xs text-cyan-300 mb-3">
+                    <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                    <span>AIRROUTE RESEARCH HUB</span>
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
+                    深度评测与网络拓扑<span class="text-gradient">研究长文</span>
+                </h1>
+                <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+                    本中心汇总航线引航团队针对 2026 全球跨境物理专线、三大运营商晚高峰网络抖动、AI大模型原生住宅IP穿透与客户端容灾防断流的全部深度实测论文级报告。
+                </p>
+            </div>
+
+            <!-- Search & Filter Controls Skeleton -->
+            <div class="bg-[#0b1329] border border-slate-800 rounded-2xl p-4 sm:p-6 mb-10 shadow-xl">
+                <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                    <!-- Search Input -->
+                    <div class="relative w-full md:w-96">
+                        <input type="text" id="article-search" placeholder="输入关键词搜索（如：IEPL、晚高峰、ChatGPT）..." class="w-full bg-[#050a18] border border-slate-700 rounded-xl px-4 py-2.5 pl-10 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition">
+                        <svg class="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+
+                    <!-- Filter Tabs Skeleton -->
+                    <div class="flex flex-wrap gap-2 w-full md:w-auto" id="filter-buttons">
+                        <button class="filter-btn active px-3.5 py-1.5 rounded-lg text-xs font-medium bg-cyan-500 text-white transition" data-filter="all">全部长文</button>
+                        <button class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition" data-filter="ranking">专线天梯</button>
+                        <button class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition" data-filter="topology">拓扑科普</button>
+                        <button class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition" data-filter="guide">防断流指引</button>
+                        <button class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition" data-filter="ai">AI出海实测</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Articles Grid -->
+            <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Article Card 1 -->
+                <article class="article-item bg-[#0b1329] rounded-2xl border border-slate-800 overflow-hidden hover:border-cyan-500/50 transition-all flex flex-col group" data-category="ranking">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between text-xs mb-3">
+                                <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">专线天梯</span>
+                                <span class="text-slate-500 font-mono">2026-03-01</span>
+                            </div>
+                            <h2 class="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors mb-3 leading-snug">
+                                <a href="2026-top-airports-speedtest-ranking.html" class="hover:underline">
+                                    2026年全球IEPL专线机场综合天梯榜与晚高峰实测报告
+                                </a>
+                            </h2>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-6">
+                                覆盖电信、联通、移动三大国内运营商骨干网，对数十家主流专线机场进行 30 天连续打流采样。全面对比晚高峰吞吐延迟与 4K/8K 流媒体秒开率。
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
+                            <span class="text-slate-500">阅读约 8 分钟</span>
+                            <a href="2026-top-airports-speedtest-ranking.html" class="text-cyan-400 hover:text-cyan-300 font-medium inline-flex items-center">
+                                完整实测 &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article Card 2 -->
+                <article class="article-item bg-[#0b1329] rounded-2xl border border-slate-800 overflow-hidden hover:border-cyan-500/50 transition-all flex flex-col group" data-category="topology">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between text-xs mb-3">
+                                <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/30">拓扑科普</span>
+                                <span class="text-slate-500 font-mono">2026-02-28</span>
+                            </div>
+                            <h2 class="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors mb-3 leading-snug">
+                                <a href="iepl-vs-iplc-network-topology-guide.html" class="hover:underline">
+                                    硬核科普：IEPL与IPLC物理专线拓扑解析与晚高峰防断流原理
+                                </a>
+                            </h2>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-6">
+                                彻底剖析内网端对端传输与普通公网隧道中转的技术本质区别。解析跨境物理光缆、POP 点跳接原理，以及为何只有物理专线才能保障敏感期不失联。
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
+                            <span class="text-slate-500">阅读约 10 分钟</span>
+                            <a href="iepl-vs-iplc-network-topology-guide.html" class="text-cyan-400 hover:text-cyan-300 font-medium inline-flex items-center">
+                                完整实测 &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article Card 3 -->
+                <article class="article-item bg-[#0b1329] rounded-2xl border border-slate-800 overflow-hidden hover:border-cyan-500/50 transition-all flex flex-col group" data-category="guide">
+                    <div class="p-6-1 flex flex-col justify-between p-6">
+                        <div>
+                            <div class="flex items-center justify-between text-xs mb-3">
+                                <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">防断流指引</span>
+                                <span class="text-slate-500 font-mono">2026-02-20</span>
+                            </div>
+                            <h2 class="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors mb-3 leading-snug">
+                                <a href="night-peak-anti-packet-loss-guide.html" class="hover:underline">
+                                    电信/联通/移动三大运营商晚高峰节点跳段与防断流避坑指引
+                                </a>
+                            </h2>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-6">
+                                针对省际跨网 QoS 降速与晚高峰丢包假死，提供基于 Clash Verge Rev / Sing-box 的健康检测、故障自动回退与备用链路配置实操手册。
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
+                            <span class="text-slate-500">阅读约 7 分钟</span>
+                            <a href="night-peak-anti-packet-loss-guide.html" class="text-cyan-400 hover:text-cyan-300 font-medium inline-flex items-center">
+                                完整实测 &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article Card 4 -->
+                <article class="article-item bg-[#0b1329] rounded-2xl border border-slate-800 overflow-hidden hover:border-cyan-500/50 transition-all flex flex-col group" data-category="ai">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between text-xs mb-3">
+                                <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-purple-500/10 text-purple-400 border border-purple-500/30">AI出海实测</span>
+                                <span class="text-slate-500 font-mono">2026-02-15</span>
+                            </div>
+                            <h2 class="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors mb-3 leading-snug">
+                                <a href="ai-streaming-native-ip-unlock-test.html" class="hover:underline">
+                                    2026跨国出海：ChatGPT/Claude/Netflix原生住宅IP解锁全景评测
+                                </a>
+                            </h2>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-6">
+                                面对海外主流大模型风控系统日益严格的 IP 欺诈度校验，深度实测各大机场节点在原生住宅 ISP 与机房广播 IP 下的连通成功率与防封表现。
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
+                            <span class="text-slate-500">阅读约 9 分钟</span>
+                            <a href="ai-streaming-native-ip-unlock-test.html" class="text-cyan-400 hover:text-cyan-300 font-medium inline-flex items-center">
+                                完整实测 &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Empty State for Search -->
+            <div id="no-results" class="hidden text-center py-16">
+                <div class="w-12 h-12 mx-auto rounded-full bg-slate-800 flex items-center justify-center text-slate-400 mb-3">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <p class="text-sm text-slate-400">未检索到与关键词匹配的深度长文，请尝试更换关键词。</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#02050e] border-t border-slate-800 text-slate-400 text-xs py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Col 1: Brand Info -->
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-base font-bold text-white">航线引航</span>
+                        <span class="text-[10px] px-1.5 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800/60 font-mono">AirRoute</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400 leading-relaxed">
+                        专注全球跨境节点测速、IEPL 专线网络拓扑深度实测与出海避坑指引。提供权威、客观、可复现的第三方引航数据。
+                    </p>
+                </div>
+
+                <!-- Col 2: Navigation Links (must have .html) -->
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-3">核心导航</h4>
+                    <ul class="space-y-2 text-[11px]">
+                        <li><a href="../index.html" class="hover:text-cyan-400 transition">站点首页 (Home)</a></li>
+                        <li><a href="../index.html#ranking" class="hover:text-cyan-400 transition">2026 全球专线天梯榜</a></li>
+                        <li><a href="../index.html#reviews" class="hover:text-cyan-400 transition">专线网络深度评测</a></li>
+                        <li><a href="../index.html#speedtest" class="hover:text-cyan-400 transition">晚高峰测速遥测</a></li>
+                        <li><a href="../index.html#guide" class="hover:text-cyan-400 transition">出海跨境避坑指南</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Articles & Docs (must have .html) -->
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-3">长文矩阵</h4>
+                    <ul class="space-y-2 text-[11px]">
+                        <li><a href="index.html" class="hover:text-cyan-400 transition text-cyan-300 font-medium">评测聚合中心 (Articles)</a></li>
+                        <li><a href="2026-top-airports-speedtest-ranking.html" class="hover:text-cyan-400 transition">2026 专线机场天梯评测</a></li>
+                        <li><a href="iepl-vs-iplc-network-topology-guide.html" class="hover:text-cyan-400 transition">IEPL 与 IPLC 拓扑解析</a></li>
+                        <li><a href="night-peak-anti-packet-loss-guide.html" class="hover:text-cyan-400 transition">晚高峰防断流避坑指引</a></li>
+                        <li><a href="ai-streaming-native-ip-unlock-test.html" class="hover:text-cyan-400 transition">AI与流媒体住宅IP实测</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Compliance & Sitemap -->
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-3">规范与辅助</h4>
+                    <ul class="space-y-2 text-[11px]">
+                        <li><a href="../sitemap.xml" class="hover:text-cyan-400 transition">网站地图 (Sitemap.xml)</a></li>
+                        <li><a href="../robots.txt" class="hover:text-cyan-400 transition">爬虫协议 (Robots.txt)</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Copyright -->
+            <div class="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-400 gap-2">
+                <div>
+                    &copy; 2026 航线引航 (AirRoute). All rights reserved. 纯静态极客架构驱动.
+                </div>
+                <div class="flex items-center space-x-3">
+                    <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+                    <span>所有超链接已开启防死循环 .html 显式扩展名校验</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Filter and Search Script -->
+    <script>
+        const searchInput = document.getElementById('article-search');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const articles = document.querySelectorAll('.article-item');
+        const noResults = document.getElementById('no-results');
+
+        let currentFilter = 'all';
+
+        function updateArticles() {
+            const query = searchInput.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            articles.forEach(article => {
+                const category = article.getAttribute('data-category');
+                const title = article.querySelector('h2').textContent.toLowerCase();
+                const desc = article.querySelector('p').textContent.toLowerCase();
+
+                const matchesFilter = (currentFilter === 'all' || category === currentFilter);
+                const matchesSearch = (!query || title.includes(query) || desc.includes(query));
+
+                if (matchesFilter && matchesSearch) {
+                    article.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    article.style.display = 'none';
+                }
+            });
+
+            if (visibleCount === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-cyan-500', 'text-white');
+                    b.classList.add('bg-slate-800', 'text-slate-300');
+                });
+                btn.classList.add('bg-cyan-500', 'text-white');
+                btn.classList.remove('bg-slate-800', 'text-slate-300');
+                currentFilter = btn.getAttribute('data-filter');
+                updateArticles();
+            });
+        });
+
+        searchInput.addEventListener('input', updateArticles);
+
+        // Mobile menu toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        if (btn && menu) {
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+        }
+    </script>
+</body>
+</html>
