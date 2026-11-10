@@ -164,6 +164,32 @@
 
             <!-- Articles Grid -->
             <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Article Card 0 (Featured Whitepaper) -->
+                <article class="article-item bg-[#0c152e] rounded-2xl border border-emerald-500/40 overflow-hidden hover:border-emerald-400 transition-all flex flex-col group glow-border" data-category="ranking ai">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between text-xs mb-3">
+                                <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">重磅白皮书 · 双ISP实测</span>
+                                <span class="text-slate-500 font-mono">2026-11-10</span>
+                            </div>
+                            <h2 class="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors mb-3 leading-snug">
+                                <a href="native-residential-ip-dual-isp-airport-ladder-2026.html" class="hover:underline">
+                                    2026原生住宅IP双ISP翻墙梯子与高速机场推荐指南
+                                </a>
+                            </h2>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-6">
+                                3500+字硬核技术白皮书：深度拆解 IP2Location 机房标识、Scamalytics 欺诈分计算模型、跨国电商防关联与流媒体本土解锁，提供高纯净度专线技术天梯榜。
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
+                            <span class="text-slate-500">精读约 17 分钟</span>
+                            <a href="native-residential-ip-dual-isp-airport-ladder-2026.html" class="text-emerald-400 hover:text-emerald-300 font-medium inline-flex items-center">
+                                完整白皮书 &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
                 <!-- Article Card 1 -->
                 <article class="article-item bg-[#0b1329] rounded-2xl border border-slate-800 overflow-hidden hover:border-cyan-500/50 transition-all flex flex-col group" data-category="ranking">
                     <div class="p-6 flex-1 flex flex-col justify-between">
@@ -313,6 +339,7 @@
                     <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-3">长文矩阵</h4>
                     <ul class="space-y-2 text-[11px]">
                         <li><a href="index.html" class="hover:text-cyan-400 transition text-cyan-300 font-medium">评测聚合中心 (Articles)</a></li>
+                        <li><a href="native-residential-ip-dual-isp-airport-ladder-2026.html" class="hover:text-cyan-400 transition text-emerald-400">2026 原生住宅双ISP指南</a></li>
                         <li><a href="2026-top-airports-speedtest-ranking.html" class="hover:text-cyan-400 transition">2026 专线机场天梯评测</a></li>
                         <li><a href="iepl-vs-iplc-network-topology-guide.html" class="hover:text-cyan-400 transition">IEPL 与 IPLC 拓扑解析</a></li>
                         <li><a href="night-peak-anti-packet-loss-guide.html" class="hover:text-cyan-400 transition">晚高峰防断流避坑指引</a></li>
@@ -361,7 +388,7 @@
                 const title = article.querySelector('h2').textContent.toLowerCase();
                 const desc = article.querySelector('p').textContent.toLowerCase();
 
-                const matchesFilter = (currentFilter === 'all' || category === currentFilter);
+                const matchesFilter = (currentFilter === 'all' || category.includes(currentFilter));
                 const matchesSearch = (!query || title.includes(query) || desc.includes(query));
 
                 if (matchesFilter && matchesSearch) {
