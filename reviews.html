@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跨境IEPL物理专线深度实测与评测 - 航线引航</title>
+    <meta name="description" content="航线引航专属专线评测频道。深度实测双向IEPL物理专线、ChatGPT/AI原生住宅IP解锁、4K流媒体与多协议抗审查性能。">
+    <meta name="keywords" content="IEPL专线评测,物理专线实测,住宅IP解锁,ChatGPT风控穿透,Hysteria2协议,VlessReality,机场横评">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="reviews.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="跨境IEPL物理专线深度实测与评测 - 航线引航">
+    <meta property="og:description" content="航线引航专属专线评测频道。深度实测双向IEPL物理专线、ChatGPT/AI原生住宅IP解锁、4K流媒体与多协议抗审查性能。">
+    <meta property="og:url" content="reviews.html">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: { 400: '#22d3ee', 500: '#06b6d4', 600: '#0891b2' },
+                        radar: { base: '#030712', card: '#0b1329', cardLight: '#111e3f' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .radar-grid-bg {
+            background-color: #030712;
+            background-image: 
+                radial-gradient(circle at 50% 15%, rgba(6, 182, 212, 0.1) 0%, transparent 60%),
+                linear-gradient(rgba(14, 165, 233, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(14, 165, 233, 0.04) 1px, transparent 1px);
+            background-size: 100% 100%, 36px 36px, 36px 36px;
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #38bdf8 0%, #06b6d4 50%, #34d399 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-[#030712] text-slate-200 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 bg-[#030712]/90 backdrop-blur-md border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-3 group">
+                    <div class="relative w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+                        <svg class="w-6 h-6 text-white transform -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                        </svg>
+                        <div class="absolute -top-1 -right-1 w-3 h-3 bg-emerald-400 rounded-full border-2 border-[#030712]"></div>
+                    </div>
+                    <div>
+                        <div class="flex items-center space-x-1.5">
+                            <span class="text-xl font-black tracking-wider text-white">航线引航</span>
+                            <span class="text-[10px] uppercase font-bold tracking-widest px-1.5 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800/50">AirRoute</span>
+                        </div>
+                        <p class="text-[10px] text-slate-400 tracking-tight">全球专线拓扑实测与避坑指南</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav Items -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                    <a href="index.html" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-cyan-400 rounded-lg hover:bg-slate-800/50 transition">首页</a>
+                    <a href="rankings.html" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-cyan-400 rounded-lg hover:bg-slate-800/50 transition">天梯总榜</a>
+                    <a href="reviews.html" class="px-3 py-2 text-sm font-medium text-cyan-400 bg-slate-800/50 rounded-lg transition">专线评测</a>
+                    <a href="speedtest.html" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-cyan-400 rounded-lg hover:bg-slate-800/50 transition">晚高峰测速</a>
+                    <a href="guide.html" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-cyan-400 rounded-lg hover:bg-slate-800/50 transition">出海避坑</a>
+                    <a href="articles/index.html" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-cyan-400 rounded-lg hover:bg-slate-800/50 transition flex items-center">
+                        <span>长文矩阵</span>
+                        <span class="ml-1.5 px-1.5 py-0.2 text-[10px] bg-cyan-500/20 text-cyan-300 rounded-full border border-cyan-500/30 font-mono">NEW</span>
+                    </a>
+                </nav>
+
+                <!-- Actions CTA -->
+                <div class="hidden sm:flex items-center space-x-3">
+                    <a href="rankings.html" class="inline-flex items-center px-4 py-2 text-xs font-semibold rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 text-white shadow-lg shadow-cyan-500/20 transition">
+                        查看天梯榜单
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800" aria-label="打开菜单">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#070e24] border-b border-slate-800 px-4 pt-2 pb-4 space-y-1">
+            <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800/50">首页</a>
+            <a href="rankings.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800/50">天梯总榜</a>
+            <a href="reviews.html" class="block px-3 py-2 rounded-md text-base font-medium text-cyan-400 bg-slate-800/50">专线评测</a>
+            <a href="speedtest.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800/50">晚高峰测速</a>
+            <a href="guide.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800/50">出海避坑</a>
+            <a href="articles/index.html" class="block px-3 py-2 rounded-md text-base font-medium text-cyan-300 hover:bg-slate-800/50">长文矩阵</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow radar-grid-bg py-10 sm:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Breadcrumbs -->
+            <nav class="flex items-center space-x-2 text-xs text-slate-400 mb-6" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-cyan-400 transition">首页</a>
+                <span>/</span>
+                <span class="text-cyan-400 font-medium">专线评测 (Reviews)</span>
+            </nav>
+
+            <!-- Page Header -->
+            <div class="max-w-3xl mb-12">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-800/40 text-xs text-cyan-300 mb-3">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                    <span>IEPL TOPOLOGY & PROTOCOL LAB</span>
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
+                    跨境 IEPL 物理专线<span class="text-gradient">深度实测与评测</span>
+                </h1>
+                <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+                    航线引航专属专线评测频道。深度实测双向 IEPL 物理专线、ChatGPT/AI 原生住宅 IP 解锁、4K 流媒体与多协议抗审查性能。
+                </p>
+            </div>
+
+            <!-- Core Section 1: 物理专线实测与解析 -->
+            <div class="bg-[#0b1329] rounded-2xl border border-slate-800 p-6 sm:p-8 mb-12">
+                <div class="flex items-center space-x-2 text-xs font-bold text-cyan-400 uppercase tracking-widest mb-3">
+                    <span class="w-2 h-0.5 bg-cyan-400"></span>
+                    <span>PHYSICAL TOPOLOGY BENCHMARK</span>
+                </div>
+                <h2 class="text-xl sm:text-2xl font-bold text-white mb-4">
+                    真假物理专线辨析：内网点对点 vs 公网中转伪装
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6">
+                    真正的 IEPL（International Ethernet Private Line）专线采用中国电信或中国联通的跨境物理层二层跳线，境内数据从入口直接进入运营商私网光纤，直通香港、东京或法兰克福 POP 点，全程不经过公网 GFW 检查点。因此具备以下三大绝佳特性：
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-[#070e22] p-4 rounded-xl border border-slate-800">
+                        <div class="text-sm font-bold text-emerald-400 mb-1">01 晚高峰 0 丢包</div>
+                        <p class="text-xs text-slate-400">完全避开 163 骨干网国际出口晚间拥堵拥塞，抖动控制在 1ms 内。</p>
+                    </div>
+                    <div class="bg-[#070e22] p-4 rounded-xl border border-slate-800">
+                        <div class="text-sm font-bold text-cyan-400 mb-1">02 敏感期不失联</div>
+                        <p class="text-xs text-slate-400">内网数据流不触发 GFW 深度包检测（DPI），绝无协议阻断与端口封锁。</p>
+                    </div>
+                    <div class="bg-[#070e22] p-4 rounded-xl border border-slate-800">
+                        <div class="text-sm font-bold text-purple-400 mb-1">03 物理极致低延迟</div>
+                        <p class="text-xs text-slate-400">广港光缆传输往返实测仅需 4.8ms，沪日专线稳定在 24ms~28ms。</p>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-slate-800 text-xs">
+                    <span class="text-slate-400">代表性落地服务商：<strong class="text-white">环球梯 (全IEPL专线)</strong></span>
+                    <a href="articles/iepl-vs-iplc-network-topology-guide.html" class="text-cyan-400 hover:text-cyan-300 font-medium">阅读硬核拓扑科普长文 &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Core Section 2: 多协议深度抗审查横评表 -->
+            <div class="bg-[#0b1329] rounded-2xl border border-slate-800 overflow-hidden shadow-2xl mb-12">
+                <div class="px-6 py-4 bg-[#070e22] border-b border-slate-800 flex items-center justify-between">
+                    <h3 class="text-sm font-bold text-white uppercase tracking-wider">主流加密协议传输性能与抗封锁综合对比</h3>
+                    <span class="text-xs text-cyan-400">2026 最新协议实测</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs sm:text-sm">
+                        <thead class="bg-[#091128] text-slate-400 uppercase text-[11px] border-b border-slate-800">
+                            <tr>
+                                <th class="px-5 py-3.5">协议方案</th>
+                                <th class="px-5 py-3.5">底层传输机制</th>
+                                <th class="px-5 py-3.5">握手耗时 RTT</th>
+                                <th class="px-5 py-3.5">弱网重传开销</th>
+                                <th class="px-5 py-3.5">抗 DPI 阻断性</th>
+                                <th class="px-5 py-3.5 text-right">最佳适配场景</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/80 font-mono text-slate-300">
+                            <tr class="hover:bg-slate-800/30">
+                                <td class="px-5 py-3.5 font-bold text-white font-sans">Shadowsocks 2022</td>
+                                <td class="px-5 py-3.5 font-sans">AEAD 独立握手认证</td>
+                                <td class="px-5 py-3.5 text-emerald-400">1 RTT</td>
+                                <td class="px-5 py-3.5 text-emerald-400">极低 (物理专线首选)</td>
+                                <td class="px-5 py-3.5 text-emerald-400 font-sans">物理专线无封锁风险</td>
+                                <td class="px-5 py-3.5 text-right font-sans">IEPL 专线极致极速</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/30">
+                                <td class="px-5 py-3.5 font-bold text-white font-sans">Vless-Reality</td>
+                                <td class="px-5 py-3.5 font-sans">TLS 1.3 证书借壳伪装</td>
+                                <td class="px-5 py-3.5 text-cyan-400">1~2 RTT</td>
+                                <td class="px-5 py-3.5 text-cyan-400">较低</td>
+                                <td class="px-5 py-3.5 text-emerald-400 font-sans">极高 (防中间人探测)</td>
+                                <td class="px-5 py-3.5 text-right font-sans">直连公网高抗封锁</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/30">
+                                <td class="px-5 py-3.5 font-bold text-white font-sans">Hysteria 2</td>
+                                <td class="px-5 py-3.5 font-sans">UDP 暴力拥塞控制</td>
+                                <td class="px-5 py-3.5 text-emerald-400">0~1 RTT</td>
+                                <td class="px-5 py-3.5 text-purple-400">高 (部分QoS丢弃)</td>
+                                <td class="px-5 py-3.5 text-amber-400 font-sans">较高 (易被限速)</td>
+                                <td class="px-5 py-3.5 text-right font-sans">高丢包公网突发加速</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/30">
+                                <td class="px-5 py-3.5 font-bold text-white font-sans">Trojan-GFW</td>
+                                <td class="px-5 py-3.5 font-sans">标准 HTTPS 网站伪装</td>
+                                <td class="px-5 py-3.5 text-slate-400">2 RTT</td>
+                                <td class="px-5 py-3.5 text-cyan-400">中等</td>
+                                <td class="px-5 py-3.5 text-emerald-400 font-sans">高</td>
+                                <td class="px-5 py-3.5 text-right font-sans">跨平台通用兼容</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Core Section 3: 原生住宅双 ISP 解锁评测体系 -->
+            <div class="bg-[#0b1329] rounded-2xl border border-slate-800 p-6 sm:p-8 mb-12">
+                <div class="flex items-center space-x-2 text-xs font-bold text-purple-400 uppercase tracking-widest mb-3">
+                    <span class="w-2 h-0.5 bg-purple-400"></span>
+                    <span>RESIDENTIAL DUAL-ISP AUDITING</span>
+                </div>
+                <h2 class="text-xl sm:text-2xl font-bold text-white mb-4">
+                    ChatGPT / Claude / Netflix 住宅双 ISP 穿透实测
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6">
+                    针对海外 AI 大模型（OpenAI ChatGPT Plus、Anthropic Claude Pro）与各大流媒体平台不断升级的风控系统，航线引航团队制定了严苛的 IP 纯净度检测标准：
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-[#070e22] p-5 rounded-xl border border-slate-800">
+                        <div class="text-sm font-bold text-cyan-400 mb-2">机房广播 IP (DataCenter IP)</div>
+                        <ul class="text-xs text-slate-400 space-y-1.5 list-disc list-inside">
+                            <li>Scamalytics 欺诈评分通常高于 45 分</li>
+                            <li>易触发 Cloudflare Turnstile 验证码死循环</li>
+                            <li>注册或使用 ChatGPT 极高概率提示 Access Denied</li>
+                        </ul>
+                    </div>
+                    <div class="bg-[#070e22] p-5 rounded-xl border border-emerald-500/30">
+                        <div class="text-sm font-bold text-emerald-400 mb-2">原生住宅双 ISP (Residential IP)</div>
+                        <ul class="text-xs text-slate-400 space-y-1.5 list-disc list-inside">
+                            <li>Scamalytics 欺诈分严格控制在 0~5 分极纯净范围</li>
+                            <li>原生解锁 Netflix 4K 全球片库、Disney+、HBO Max</li>
+                            <li>无缝使用 Claude 3.7 / ChatGPT 商业版，无风控封号风险</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs">
+                    <span class="text-slate-400">实测推荐：<strong class="text-white">环球梯 (住宅双ISP池)</strong>、<strong class="text-white">神行加速 (8K直通)</strong></span>
+                    <a href="articles/ai-streaming-native-ip-unlock-test.html" class="text-cyan-400 hover:text-cyan-300 font-medium">查阅住宅IP解锁全景评测长文 &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Core Section 4: 专线评测深度长文陈列 -->
+            <div class="mb-12">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="text-xl sm:text-2xl font-bold text-white">专线评测频道深度长文</h2>
+                        <p class="text-xs text-slate-400 mt-1">完整复现测试过程与路由追踪数据</p>
+                    </div>
+                    <a href="articles/index.html" class="text-xs font-semibold text-cyan-400 hover:underline">浏览全部文章 &rarr;</a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-[#0b1329] p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/40 transition">
+                        <div class="flex items-center justify-between text-xs mb-3">
+                            <span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/30">拓扑实测</span>
+                            <span class="text-slate-500 font-mono">2026-02-28</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2 hover:text-cyan-400 transition">
+                            <a href="articles/iepl-vs-iplc-network-topology-guide.html">硬核科普：IEPL与IPLC物理专线拓扑解析与晚高峰防断流原理</a>
+                        </h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                            深入剖析海底光缆、内网点对点跳接与公网出口路由瓶颈，解密为什么普通中转晚上必定卡死。
+                        </p>
+                        <a href="articles/iepl-vs-iplc-network-topology-guide.html" class="text-xs text-cyan-400 font-medium inline-flex items-center">
+                            阅读完整实测 &rarr;
+                        </a>
+                    </div>
+
+                    <div class="bg-[#0b1329] p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/40 transition">
+                        <div class="flex items-center justify-between text-xs mb-3">
+                            <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/30">AI出海</span>
+                            <span class="text-slate-500 font-mono">2026-02-15</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2 hover:text-cyan-400 transition">
+                            <a href="articles/ai-streaming-native-ip-unlock-test.html">2026跨国出海：ChatGPT/Claude/Netflix原生住宅IP解锁全景评测</a>
+                        </h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                            针对海外主流 AI 工具与流媒体严厉反爬风控，深度评测各大机场纯净住宅 IP 的稳定性与防封效果。
+                        </p>
+                        <a href="articles/ai-streaming-native-ip-unlock-test.html" class="text-xs text-cyan-400 font-medium inline-flex items-center">
+                            阅读完整实测 &rarr;
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#02050e] border-t border-slate-800 text-slate-400 text-xs py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-base font-bold text-white">航线引航</span>
+                        <span class="text-[10px] px-1.5 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800/60 font-mono">AirRoute</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400 leading-relaxed">
+                        专注全球跨境节点测速、IEPL 专线网络拓扑深度实测与出海避坑指引。提供权威、客观、可复现的第三方引航数据。
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-3">核心导航</h4>
+                    <ul class="space-y-2 text-[11px]">
+                        <li><a href="index.html" class="hover:text-cyan-400 transition">站点首页 (Home)</a></li>
+                        <li><a href="rankings.html" class="hover:text-cyan-400 transition">2026 全球专线天梯榜</a></li>
+                        <li><a href="reviews.html" class="hover:text-cyan-400 transition text-cyan-300 font-medium">专线网络深度评测</a></li>
+                        <li><a href="speedtest.html" class="hover:text-cyan-400 transition">晚高峰测速遥测</a></li>
+                        <li><a href="guide.html" class="hover:text-cyan-400 transition">出海跨境避坑指南</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-3">长文矩阵</h4>
+                    <ul class="space-y-2 text-[11px]">
+                        <li><a href="articles/index.html" class="hover:text-cyan-400 transition">评测聚合中心 (Articles)</a></li>
+                        <li><a href="articles/2026-top-airports-speedtest-ranking.html" class="hover:text-cyan-400 transition">2026 专线机场天梯评测</a></li>
+                        <li><a href="articles/iepl-vs-iplc-network-topology-guide.html" class="hover:text-cyan-400 transition">IEPL 与 IPLC 拓扑解析</a></li>
+                        <li><a href="articles/night-peak-anti-packet-loss-guide.html" class="hover:text-cyan-400 transition">晚高峰防断流避坑指引</a></li>
+                        <li><a href="articles/ai-streaming-native-ip-unlock-test.html" class="hover:text-cyan-400 transition">AI与流媒体住宅IP实测</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-3">规范与辅助</h4>
+                    <ul class="space-y-2 text-[11px]">
+                        <li><a href="sitemap.xml" class="hover:text-cyan-400 transition">网站地图 (Sitemap.xml)</a></li>
+                        <li><a href="robots.txt" class="hover:text-cyan-400 transition">爬虫协议 (Robots.txt)</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-400 gap-2">
+                <div>&copy; 2026 航线引航 (AirRoute). All rights reserved. 纯静态极客架构.</div>
+                <div class="flex items-center space-x-3">
+                    <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+                    <span>所有超链接已开启防死循环 .html 显式扩展名校验</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        if (btn && menu) {
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+        }
+    </script>
+</body>
+</html>
