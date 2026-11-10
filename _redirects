@@ -1,0 +1,32 @@
+# ===================================================
+# Cloudflare Pages / Netlify 302 AFF 隔离跳转规则
+# 状态码: 302 Temporary Redirect (搜索引擎不继承权重)
+# ===================================================
+
+# 1. 路径模式 (/go/:id)
+/go/huanqiuti    https://123pps01.huanqiutiaff.com/#/?code=j5VBUvw0    302
+/go/hq           https://123pps01.huanqiutiaff.com/#/?code=j5VBUvw0    302
+/go/dalaoyun     https://ppsvip01.dalaoyunaff.com/#/?code=Iz1GlCVa     302
+/go/dly          https://ppsvip01.dalaoyunaff.com/#/?code=Iz1GlCVa     302
+/go/liulianyun   https://123pp01.liulianyunaff.com/#/?code=MsZP3u7G    302
+/go/ll           https://123pp01.liulianyunaff.com/#/?code=MsZP3u7G    302
+/go/yunjiexian   https://pp01.yunjiexianaff.com/#/?code=6Y9vSMcc       302
+/go/yjx          https://pp01.yunjiexianaff.com/#/?code=6Y9vSMcc       302
+/go/shandianshu  https://ppsvip01.shandianshuaff.com/#/?code=QbLF8tjB  302
+/go/sds          https://ppsvip01.shandianshuaff.com/#/?code=QbLF8tjB  302
+/go/shenxing     https://pps123.shenxingaff.com/#/?code=6tQ7zHUc       302
+/go/sx           https://pps123.shenxingaff.com/#/?code=6tQ7zHUc       302
+
+# 2. 参数模式 (/go.html?id=:id)
+/go.html id=huanqiuti    https://123pps01.huanqiutiaff.com/#/?code=j5VBUvw0    302!
+/go.html id=hq           https://123pps01.huanqiutiaff.com/#/?code=j5VBUvw0    302!
+/go.html id=dalaoyun     https://ppsvip01.dalaoyunaff.com/#/?code=Iz1GlCVa     302!
+/go.html id=dly          https://ppsvip01.dalaoyunaff.com/#/?code=Iz1GlCVa     302!
+/go.html id=liulianyun   https://123pp01.liulianyunaff.com/#/?code=MsZP3u7G    302!
+/go.html id=ll           https://123pp01.liulianyunaff.com/#/?code=MsZP3u7G    302!
+/go.html id=yunjiexian   https://pp01.yunjiexianaff.com/#/?code=6Y9vSMcc       302!
+/go.html id=yjx          https://pp01.yunjiexianaff.com/#/?code=6Y9vSMcc       302!
+/go.html id=shandianshu  https://ppsvip01.shandianshuaff.com/#/?code=QbLF8tjB  302!
+/go.html id=sds          https://ppsvip01.shandianshuaff.com/#/?code=QbLF8tjB  302!
+/go.html id=shenxing     https://pps123.shenxingaff.com/#/?code=6tQ7zHUc       302!
+/go.html id=sx           https://pps123.shenxingaff.com/#/?code=6tQ7zHUc       302!

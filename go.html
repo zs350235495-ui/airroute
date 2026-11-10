@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安全引航跳转中 - 航线引航 (AirRoute)</title>
+    <!-- 严格搜索引擎隔离指令：禁止索引、禁止跟踪、禁止快照 -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="referrer" content="no-referrer">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: { 400: '#22d3ee', 500: '#06b6d4', 600: '#0891b2' },
+                        radar: { base: '#030712', card: '#0b1329', cardLight: '#111e3f' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .radar-grid-bg {
+            background-color: #030712;
+            background-image: 
+                radial-gradient(circle at 50% 30%, rgba(6, 182, 212, 0.12) 0%, transparent 60%),
+                linear-gradient(rgba(14, 165, 233, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(14, 165, 233, 0.04) 1px, transparent 1px);
+            background-size: 100% 100%, 32px 32px, 32px 32px;
+        }
+        @keyframes radar-sweep {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .animate-radar {
+            animation: radar-sweep 2.5s linear infinite;
+        }
+    </style>
+
+    <!-- 极速 302 客户端跳转内核 -->
+    <script>
+        (function() {
+            var AIRPORT_ROUTES = {
+                'huanqiuti': 'https://123pps01.huanqiutiaff.com/#/?code=j5VBUvw0',
+                'hq': 'https://123pps01.huanqiutiaff.com/#/?code=j5VBUvw0',
+                'dalaoyun': 'https://ppsvip01.dalaoyunaff.com/#/?code=Iz1GlCVa',
+                'dly': 'https://ppsvip01.dalaoyunaff.com/#/?code=Iz1GlCVa',
+                'liulianyun': 'https://123pp01.liulianyunaff.com/#/?code=MsZP3u7G',
+                'll': 'https://123pp01.liulianyunaff.com/#/?code=MsZP3u7G',
+                'yunjiexian': 'https://pp01.yunjiexianaff.com/#/?code=6Y9vSMcc',
+                'yjx': 'https://pp01.yunjiexianaff.com/#/?code=6Y9vSMcc',
+                'shandianshu': 'https://ppsvip01.shandianshuaff.com/#/?code=QbLF8tjB',
+                'sds': 'https://ppsvip01.shandianshuaff.com/#/?code=QbLF8tjB',
+                'shenxing': 'https://pps123.shenxingaff.com/#/?code=6tQ7zHUc',
+                'sx': 'https://pps123.shenxingaff.com/#/?code=6tQ7zHUc'
+            };
+
+            // 获取参数 id (支持 ?id=xxx 或 ?go=xxx 或 /go/xxx 路径模式)
+            var params = new URLSearchParams(window.location.search);
+            var targetId = params.get('id') || params.get('go') || params.get('target');
+            
+            if (!targetId) {
+                var pathParts = window.location.pathname.split('/').filter(Boolean);
+                if (pathParts.length > 0) {
+                    var lastPart = pathParts[pathParts.length - 1].replace(/\.html$/i, '');
+                    if (AIRPORT_ROUTES[lastPart]) {
+                        targetId = lastPart;
+                    }
+                }
+            }
+
+            if (targetId) {
+                targetId = targetId.toLowerCase().trim();
+            }
+
+            var destUrl = AIRPORT_ROUTES[targetId];
+
+            if (destUrl) {
+                // 立即使用 replace 302 式跳转，不保留中间历史记录
+                window.location.replace(destUrl);
+            }
+        })();
+    </script>
+</head>
+<body class="bg-[#030712] text-slate-200 font-sans antialiased min-h-screen flex flex-col items-center justify-center radar-grid-bg p-4">
+    <div class="max-w-md w-full bg-[#0b1329] border border-cyan-500/30 rounded-2xl p-6 sm:p-8 text-center shadow-2xl shadow-cyan-950/50 relative overflow-hidden">
+        
+        <!-- 背景流光 -->
+        <div class="absolute -top-24 -left-24 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <!-- 雷达动态图标 -->
+        <div class="relative w-20 h-20 mx-auto mb-6">
+            <div class="absolute inset-0 rounded-full border border-cyan-500/30 flex items-center justify-center">
+                <div class="w-12 h-12 rounded-full border border-cyan-500/50"></div>
+                <div class="w-4 h-4 rounded-full bg-cyan-400 animate-ping opacity-75"></div>
+            </div>
+            <!-- 扫描指针 -->
+            <div class="absolute inset-0 rounded-full animate-radar origin-center pointer-events-none">
+                <div class="w-1/2 h-1/2 bg-gradient-to-br from-cyan-400/40 to-transparent rounded-tl-full"></div>
+            </div>
+        </div>
+
+        <h1 class="text-xl sm:text-2xl font-black text-white tracking-wide mb-2">安全引航通道建立中</h1>
+        <p class="text-xs sm:text-sm text-slate-400 leading-relaxed mb-6" id="status-text">
+            正在通过 302 隔离链路连接官方授权专线通道，请稍候...
+        </p>
+
+        <!-- 手动跳转与回退备选 -->
+        <div class="space-y-3 pt-4 border-t border-slate-800 text-xs">
+            <a id="manual-btn" href="#" rel="nofollow sponsored noopener noreferrer" class="hidden block w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 text-white font-bold transition shadow-lg shadow-cyan-500/20">
+                如果未自动跳转，请点击此处直达 &rarr;
+            </a>
+            <div class="text-[11px] text-slate-500">
+                安全防护：该链接已开启 <span class="text-emerald-400 font-mono">rel="nofollow sponsored"</span> 隔离防护
+            </div>
+            <a href="rankings.html" class="inline-block text-slate-400 hover:text-cyan-400 transition mt-2">
+                &larr; 返回 2026 天梯推荐榜
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // DOM 加载后提供兜底显示
+        var AIRPORT_ROUTES = {
+            'huanqiuti': 'https://123pps01.huanqiutiaff.com/#/?code=j5VBUvw0',
+            'hq': 'https://123pps01.huanqiutiaff.com/#/?code=j5VBUvw0',
+            'dalaoyun': 'https://ppsvip01.dalaoyunaff.com/#/?code=Iz1GlCVa',
+            'dly': 'https://ppsvip01.dalaoyunaff.com/#/?code=Iz1GlCVa',
+            'liulianyun': 'https://123pp01.liulianyunaff.com/#/?code=MsZP3u7G',
+            'll': 'https://123pp01.liulianyunaff.com/#/?code=MsZP3u7G',
+            'yunjiexian': 'https://pp01.yunjiexianaff.com/#/?code=6Y9vSMcc',
+            'yjx': 'https://pp01.yunjiexianaff.com/#/?code=6Y9vSMcc',
+            'shandianshu': 'https://ppsvip01.shandianshuaff.com/#/?code=QbLF8tjB',
+            'sds': 'https://ppsvip01.shandianshuaff.com/#/?code=QbLF8tjB',
+            'shenxing': 'https://pps123.shenxingaff.com/#/?code=6tQ7zHUc',
+            'sx': 'https://pps123.shenxingaff.com/#/?code=6tQ7zHUc'
+        };
+
+        var params = new URLSearchParams(window.location.search);
+        var targetId = (params.get('id') || params.get('go') || '').toLowerCase().trim();
+        var destUrl = AIRPORT_ROUTES[targetId];
+        var manualBtn = document.getElementById('manual-btn');
+        var statusText = document.getElementById('status-text');
+
+        if (destUrl) {
+            manualBtn.href = destUrl;
+            manualBtn.classList.remove('hidden');
+            setTimeout(function() {
+                window.location.href = destUrl;
+            }, 800);
+        } else {
+            statusText.textContent = "未检索到指定引航路由目标或目标已失效，请返回天梯总榜重新选择。";
+            statusText.classList.add('text-amber-400');
+        }
+    </script>
+</body>
+</html>
